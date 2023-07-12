@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>login and register</title>
+</head>
+<body>
+<div class="navbar-collapse collapse"  >
+    <ul class="nav navbar-nav navbar-right">
+         <li><a href="#" id="logout" style="display: none;">Log Out</a></li>
+    </ul>
+</div>
+</div>
+<br>
+<div class="container">	
+  <form name="registration_form" id="registration_form" method="post" action="#" enctype="multipart/form-data" >
+  <div class="row">
+
+	<div class="col-sm-4">
+		<div class="form-group">
+	      <label for="email">Email</label>
+		  <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email">
+		</div>
+		
+		<div class="form-group">
+	      <label for="password" >Password</label>
+		  <input type="password" name="password" id="password" class="form-control"  placeholder="Enter your password">
+		</div>
+		<button type="button" id="signUp" name="register" class="btn btn-success">Register Now</button>
+	</div>
+	</form>
+	<div class="col-sm-4">
+		<img src="log1o.jpeg" alt="Bookelf">
+	</div>
+	
+	<form name="login_form" id="login_form" method="post" action="#" enctype="multipart/form-data" >
+	<div class="col-sm-4">
+		<div class="form-group">
+	      <label for="email">Email</label>
+		  <input type="text" name="login_email" id="login_email" class="form-control" placeholder="Enter your email">
+		</div>
+		
+		<div class="form-group">
+	      <label for="password">Password</label>
+		  <input type="password" name="login_password" id="login_password" class="form-control"  placeholder="Enter your password">
+		</div>
+		<button type="button" id="login" name="login" class="btn btn-success">Login</button>
+	</div>
+  </div>		
+  </form>
+</div>
+<br>
+</body> 
+
+	<!-- <script type="module">
+	  
+       //----- New Registration code start	  
+	  document.getElementById("register").addEventListener("click", function() {
+		  var email =  document.getElementById("email").value;
+		  var password = document.getElementById("password").value;
+		  //For new registration
+		  createUserWithEmailAndPassword(auth, email, password)
+		  .then((userCredential) => {
+		    // Signed in 
+		    const user = userCredential.user;
+		    console.log(user);
+		    alert("Registration successfully!!");
+		    // ...
+		  })
+		  .catch((error) => {
+		    const errorCode = error.code;
+		    const errorMessage = error.message;
+		    // ..
+		    console.log(errorMessage);
+		    alert(error);
+		  });		  		  
+	  });
+	  //----- End
+
+	  //----- Login code start	  
+	  document.getElementById("login").addEventListener("click", function() {
+		  var email =  document.getElementById("login_email").value;
+		  var password = document.getElementById("login_password").value;
+
+		  signInWithEmailAndPassword(auth, email, password)
+		  .then((userCredential) => {
+		    // Signed in 
+		    const user = userCredential.user;
+		    console.log(user);
+		    alert(user.email+" Login successfully!!!");
+		    document.getElementById('logout').style.display = 'block';
+		    // ...
+		  })
+		  .catch((error) => {
+		    const errorCode = error.code;
+		    const errorMessage = error.message;
+		    console.log(errorMessage);
+		    alert(errorMessage);
+		  });		  		  
+	  });
+	  //----- End
+
+	  //----- Logout code start	  
+	  document.getElementById("logout").addEventListener("click", function() {
+		  signOut(auth).then(() => {
+			  // Sign-out successful.
+			  console.log('Sign-out successful.');
+			  alert('Sign-out successful.');
+			  document.getElementById('logout').style.display = 'none';
+			}).catch((error) => {
+			  // An error happened.
+			  console.log('An error happened.');
+			});		  		  
+	  });
+	  //----- End
+
+	</script> -->
+	<script type="module">
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+		import { getDatabase } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
+		import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
+		// TODO: Add SDKs for Firebase products that you want to use
+		// https://firebase.google.com/docs/web/setup#available-libraries
+	  
+		// Your web app's Firebase configuration
+		const firebaseConfig = {
+			apiKey: "AIzaSyBaDLXQyBLpdE45urpCZmNUGI2x2mwLkQM",
+  authDomain: "books-aef12.firebaseapp.com",
+  databaseURL: "https://books-aef12-default-rtdb.firebaseio.com",
+  projectId: "books-aef12",
+  storageBucket: "books-aef12.appspot.com",
+  messagingSenderId: "1033623357387",
+  appId: "1:1033623357387:web:21b2d12415bc4258c1d84e",
+  measurementId: "G-8ZPV74872R"
+		};
+	  
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		const database = getDatabase(app);
+		const auth = getAuth();
+		signUp.addEventListener('click', (e) => {
+			var email = document.getElementById('email').value;
+			var password = document.getElementById('password').value;
+			createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+	alert('User created!');
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+	alert(errorMessage);
+    // ..
+  });
+		});
+		login.addEventListener('click', (e) => {
+			var email = document.getElementById('email').value;
+			var password = document.getElementById('password').value;
+			signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+	alert('Welcome User');
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+	alert(errorMessage);
+  });
+		});
+		
+	  </script>
+</html>

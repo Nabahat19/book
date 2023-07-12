@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Products</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>View Products</h1>
+  <div id="product-list"></div>
+  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script>
+    // Your Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBaDLXQyBLpdE45urpCZmNUGI2x2mwLkQM",
+  authDomain: "books-aef12.firebaseapp.com",
+  databaseURL: "https://books-aef12-default-rtdb.firebaseio.com",
+  projectId: "books-aef12",
+  storageBucket: "books-aef12.appspot.com",
+  messagingSenderId: "1033623357387",
+  appId: "1:1033623357387:web:21b2d12415bc4258c1d84e",
+  measurementId: "G-8ZPV74872R"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Get a reference to the products collection in the database
+    var productsRef = firebase.database().ref('products');
+
+    // Get the product list container element
+    var productListContainer = document.getElementById('product-list');
+
+    // Fetch and display the products
+    productsRef.on('value', function(snapshot) {
+      var productData = snapshot.val();
+
+      // Clear any existing product cards
+      productListContainer.innerHTML = '';
+
+      // Iterate over the products and create the product cards
+      for (var productId in productData) {
+        var product = productData[productId];
+
+        // Create the product card element
+        var card = document.createElement('div');
+        card.classList.add('product-card');
+
+        // Create the product name heading
+        var nameHeading = document.createElement('h3');
+        nameHeading.textContent = product.name;
+
+        // Create the product price paragraph
+        var priceParagraph = document.createElement('p');
+        priceParagraph.classList.add('price');
+        priceParagraph.textContent = 'Price: $' + product.price;
+
+        // Append the elements to the product card
+        card.appendChild(nameHeading);
+        card.appendChild(priceParagraph);
+
+        // Append the product card to the product list container
+        productListContainer.appendChild(card);
+      }
+    });
+  </script>
+</body>
+</html>

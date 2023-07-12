@@ -1,0 +1,43 @@
+#banner{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image:url(bci1.jpeg);
+    width: 100%;
+    background-position: center;
+
+}
+#banner h4 {
+    color: #231709;
+    font-size: 17px;
+}
+#banner h2 {
+    color: #231709;
+    font-size: 30px;
+    padding-top: none;
+    padding-bottom:none;
+    
+}
+#banner h2 span {
+    color: #b61333;
+   
+}
+button.normal{
+    font-size: 14px;
+    font-weight: 330;
+    padding: 15px;
+    padding-bottom: 15px;
+    color:#231709;
+    background-color: bisque;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+}
+#banner button:hover{
+    background-color: #231709;
+    color:bisque;
+}

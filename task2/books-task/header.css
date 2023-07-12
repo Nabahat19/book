@@ -1,0 +1,69 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Spartan',sans-serif;
+}
+body{
+    width: 100%;
+}
+.logo{
+    width: 180px;
+    height:200px;
+    padding-top:none;
+}
+#header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    background-color:bisque;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+    /*z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;*/
+}
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+}
+#navbar li a{
+    text-decoration:none ;
+    font-size: 16px;
+    font-weight: 600;
+    color:saddlebrown;
+    transition:0.3s ease ;
+}
+#navbar li a:hover,
+#navbar li a.active{
+    color:sandybrown ;
+}
+#navbar li a.active::after{
+    content: "";
+    width: 30%;
+    height: 2px;
+    background-color:sandybrown ;
+    position:0px;
+    bottom:-4px ;
+    left:20px;
+}
+#hero{
+    background-image:url("bci3.jpeg");
+    height: 90vh;
+    width: 100%;
+    background-position: top 25% right 0;
+    background-size: cover;
+    padding-top: 22%;
+    padding-right: 22%; 
+    padding-left: 39%;
+    padding-bottom: 32%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
